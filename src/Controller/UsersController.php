@@ -24,7 +24,7 @@ class UsersController extends AppController
        
         parent::beforeFilter($event);
         $this->viewBuilder()->setLayout('app/login');
-        $this->Auth->allow(['login','logout']);
+        $this->Auth->allow(['login','logout','error']);
         
     }
 
@@ -51,6 +51,10 @@ class UsersController extends AppController
     {
         $this->Auth->logout();
         return $this->redirect(['action' => 'login']);
+    }
+    public function error()
+    {
+
     }
     private function redirectUser($role_id){
         if($role_id===1){

@@ -163,3 +163,7 @@ a:HOVER{
     color: #2f2f2f;
     border: 1px solid #2f2f2f;
 }
+
+hr {
+    border-top: 1px solid rgba(160,160,160,0.1);
+  }

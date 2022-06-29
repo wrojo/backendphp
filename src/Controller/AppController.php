@@ -48,7 +48,7 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
             'authorize' => ['Controller'], 
-            'authError'    => 'No estás autorizado para ver está vista.',
+            'authError'    => 'No estás autorizado para ver la página que ingresaste.',
             'logoutRedirect' => [
                 'prefix' => false,
                 'controller' => 'Users',

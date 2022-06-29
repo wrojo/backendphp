@@ -1,73 +1,78 @@
 <?php
-/**
- * @var \App\View\AppView $this
- * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
- */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Roles'), ['controller' => 'Roles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Role'), ['controller' => 'Roles', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="users index large-9 medium-8 columns content">
-    <h3><?= __('Users') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('names') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('surnames') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('password') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('is_active') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('is_reset_password') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('role_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created_ip') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created_date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified_ip') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('modified_date') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($users as $user): ?>
-            <tr>
-                <td><?= $this->Number->format($user->id) ?></td>
-                <td><?= h($user->names) ?></td>
-                <td><?= h($user->surnames) ?></td>
-                <td><?= h($user->email) ?></td>
-                <td><?= h($user->password) ?></td>
-                <td><?= h($user->is_active) ?></td>
-                <td><?= h($user->is_reset_password) ?></td>
-                <td><?= $user->has('role') ? $this->Html->link($user->role->name, ['controller' => 'Roles', 'action' => 'view', $user->role->id]) : '' ?></td>
-                <td><?= $this->Number->format($user->created_id) ?></td>
-                <td><?= h($user->created_ip) ?></td>
-                <td><?= h($user->created_date) ?></td>
-                <td><?= $this->Number->format($user->modified_id) ?></td>
-                <td><?= h($user->modified_ip) ?></td>
-                <td><?= h($user->modified_date) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
-    </div>
+   /**
+   * @var \App\View\AppView $this
+   * @var \App\Model\Entity\Usuario[]|\Cake\Collection\CollectionInterface $usuarios
+   */
+   ?>
+<div class="card">
+   <div class="card-header d-flex justify-content-between">
+      <div class="header-title">
+         <h4 class="card-title">Usuarios</h4>
+      </div>
+      <div class="header-action">
+      </div>
+   </div>
+   <div class="card-body">
+      <?= $this->Form->create(null) ?>  
+      <div class="row"> 
+         <div class="col-lg-6">
+         </div>
+         <div class="col-lg-6">
+            <div class="row">
+               <div class="col-lg-8">
+                  <small><strong><?= __('Buscar:')?></strong></small>
+                  <?php echo $this->Form->control('txt_buscar',['class'=>'form-control','label'=>false,'placeholder'=>__('Buscar por nombres, apellidos o email.'),'value'=>@$data['txt_buscar']]); ?>
+               </div>
+               <div class="col-lg-4">
+                  <small><strong><?= __('Rol:')?></strong></small>
+                  <?php echo $this->Form->control('role_id', ['options' => $roles,'class'=>'form-control','empty'=>'Seleccione un rol','label'=>false,'default'=>@$data['role_id']]); ?>
+               </div>
+            </div>
+         </div> 
+      </div>
+      <div class="mb-2"></div>
+      <button type="submit" class="btn btn-sm btn-primary float-right"><i class="fas fa-search"></i> <?= __('Filtar')?></button>
+      <div class="mb-3" style="clear:both"></div>
+      <?= $this->Form->end() ?>
+      <?= $this->Flash->render() ?>
+      <div id="table" class="table-editable">
+         <table class="table table-bordered table-responsive-md table-striped text-center">
+            <thead>
+               <tr>
+                  <th><?= __('#')?></th>
+                  <th><?= __('Nombres')?></th>
+                  <th><?= __('Apellidos')?></th>
+                  <th><?= __('Email')?></th>
+                  <th><?= __('Rol')?></th>
+                  <th><?= __('Acciones')?></th>
+               </tr>
+            </thead>
+            <tbody>
+               <?php $num = 1; 
+                  foreach ($users as $user): 
+                      
+                    ?>
+               <tr>
+                  <td><?= $this->Number->format($user->id) ?></td>
+                  <td><?= h($user->names) ?></td>
+                  <td><?= h($user->surnames) ?></td>
+                  <td><?= h($user->email) ?></td>
+                  <td><?= h($user->role->name) ?></td>
+                  <td>  
+                     <a href="<?= $this->Url->build(['controller'=>'users','action'=>'view',$user->id]); ?>"  alt="<?= __('Ver usuario')?>"><i class="fas fa-eye"></i></a>
+                  </td>
+               </tr>
+               <?php 
+                  $num++;
+                  endforeach; ?>
+            </tbody>
+         </table>
+      </div>
+      <?php if($is_empty) { ?>
+      <p class="text-center"><?= __('No existen usuarios creados.')?></p>
+      <?php  } ?>
+      <?php echo $this->element('paginacion'); ?>
+   </div>
 </div>
+
+

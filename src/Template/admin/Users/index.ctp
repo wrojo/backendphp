@@ -15,11 +15,24 @@
    </div>
    <div class="card-body">
       <?= $this->Form->create(null) ?>  
-      <div class="row">
-         
+      <div class="row"> 
+         <div class="col-lg-6">
+         </div>
+         <div class="col-lg-6">
+            <div class="row">
+               <div class="col-lg-8">
+                  <small><strong><?= __('Buscar:')?></strong></small>
+                  <?php echo $this->Form->control('txt_buscar',['class'=>'form-control','label'=>false,'placeholder'=>__('Buscar por nombres, apellidos o email.'),'value'=>@$data['txt_buscar']]); ?>
+               </div>
+               <div class="col-lg-4">
+                  <small><strong><?= __('Rol:')?></strong></small>
+                  <?php echo $this->Form->control('role_id', ['options' => $roles,'class'=>'form-control','empty'=>'Seleccione un rol','label'=>false,'default'=>@$data['role_id']]); ?>
+               </div>
+            </div>
+         </div> 
       </div>
       <div class="mb-2"></div>
-      <button type="submit" class="btn btn-sm btn-primary float-right"><i class="fas fa-search"></i> Filtrar</button>
+      <button type="submit" class="btn btn-sm btn-primary float-right"><i class="fas fa-search"></i> <?= __('Filtar')?></button>
       <div class="mb-3" style="clear:both"></div>
       <?= $this->Form->end() ?>
       <?= $this->Flash->render() ?>
@@ -47,7 +60,9 @@
                   <td><?= h($user->email) ?></td>
                   <td><?= h($user->role->name) ?></td>
                   <td>  
-                     <a href="<?= $this->Url->build(['controller'=>'users','action'=>'edit',$user->id]); ?>"  alt="Editar usuario"><i class="fas fa-edit"></i></a>
+                     <a href="<?= $this->Url->build(['controller'=>'users','action'=>'edit',$user->id]); ?>"  alt="<?= __('Editar usuario')?>"><i class="fas fa-edit"></i></a>
+                     <a href="<?= $this->Url->build(['controller'=>'users','action'=>'view',$user->id]); ?>"  alt="<?= __('Ver usuario')?>"><i class="fas fa-eye"></i></a>
+
                      <?= $this->Form->postLink(__('<i class="fas fa-trash-alt"></i>'), ['action' => 'delete', $user->id,], ['confirm' => __('¿Realmente desea eliminar este registro ?'),'style'=>'','escape'=>false]) ?>
                   </td>
                </tr>
