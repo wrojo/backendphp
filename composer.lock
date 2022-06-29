@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f8e63204b29545aa9d0e1f67ccf07f5",
+    "content-hash": "d360e0830c98a4e14d322e5a158c31c5",
     "packages": [
         {
             "name": "aura/intl",
@@ -21,7 +21,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": "7.4.21"
+                "php": "^5.6 || ^7.0 || ^8.0"
             },
             "require-dev": {
                 "yoast/phpunit-polyfills": "~1.0"
@@ -5621,7 +5621,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "7.4.21"
+        "php": "^7.4.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
