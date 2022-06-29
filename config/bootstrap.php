@@ -201,3 +201,9 @@ Type::build('timestamp')
 //Inflector::rules('irregular', ['red' => 'redlings']);
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
+
+/*
+ * Custom Constants APP.
+ */
+$database_date_format = 'Y-m-d H:i:s';
+Configure::write('DATABASE_DATE_FORMAT', $database_date_format);

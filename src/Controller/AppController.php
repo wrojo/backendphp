@@ -14,6 +14,7 @@
  */
 namespace App\Controller;
 
+use Cake\Event\EventInterface;
 use Cake\Controller\Controller;
 use Cake\Event\Event;
 
@@ -45,11 +46,46 @@ class AppController extends Controller
             'enableBeforeRedirect' => false,
         ]);
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'authorize' => ['Controller'], 
+            'authError'    => 'No estás autorizado para ver está vista.',
+            'logoutRedirect' => [
+                'prefix' => false,
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'loginAction' => [
+                'prefix' => false,
+                'controller' => 'Users',
+                'action' => 'login'
+            ],
+            'unauthorizedRedirect' => [
+                'prefix' => false,
+                'controller' => 'Users',
+                'action' => 'error'
+            ],
+            'authenticate' => [
+                'Form' => [
+                    'fields' => ['username' => 'email', 'password' => 'password', 'userModel' => 'Users'], 
+                    'finder' => 'auth' 
+                ]
+            ],
+            'storage'=>'Session'
+           
+        ]);
 
-        /*
-         * Enable the following component for recommended CakePHP security settings.
-         * see https://book.cakephp.org/3/en/controllers/components/security.html
-         */
-        //$this->loadComponent('Security');
+    }
+    public function beforeFilter(EventInterface $event)
+    {
+        $controllerName = strtolower($this->request->getParam('controller'));
+        $actionName = strtolower($this->request->getParam('action'));
+        $user_login = $this->Auth->User();
+        $this->set(compact('controllerName','actionName','user_login'));
+    }
+    
+    public function isAuthorized($user = null)
+    {
+       
+        return false;
     }
 }
