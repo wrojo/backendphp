@@ -3,11 +3,14 @@
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Solicitudes | Departamento de Matemática y Ciencia de la Computación (DMCC)</title>
-      
+      <title>Backend App | APP</title>
       <!-- Favicon -->
-     <!--  <link rel="shortcut icon" href="../app/images/favicon.ico" /> -->
-    <!--   <link rel="stylesheet" href="../app/css/backend-plugin.min.css"> -->
+      <?= $this->Html->meta(
+          'favicon-16x16.png',
+          '/app/images/favicon-16x16.png',
+          ['type' => 'icon']
+      );
+      ?>
       <?php echo $this->Html->css('/app/css/backend-plugin.min.css'); ?>
       <?php echo $this->Html->css('/app/css/backend.css'); ?>
       <?php echo $this->Html->css('/app/vendor/@fortawesome/fontawesome-free/css/all.min.css'); ?>

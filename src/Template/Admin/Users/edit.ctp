@@ -34,7 +34,8 @@ $this->Form->setTemplates($myTemplates);
          <?php echo $this->Form->control('email', ['class'=>'form-control','label'=>false]); ?>
       </div>
       <div class="form-group">
-         <label><?= __('Clave')?></label>
+         <label class="mb-0"><?= __('Contraseña')?></label>
+         <small class="d-block mt-0"><?= __('Debe tener entre 4 y 10 carácteres')?></small>
          <?php echo $this->Form->control('password', ['type'=>'password','class'=>'form-control','label'=>false,'value'=>'']); ?>
       </div>
       <div class="form-group">
@@ -42,7 +43,7 @@ $this->Form->setTemplates($myTemplates);
          <?php echo $this->Form->control('role_id', ['options' => $roles,'class'=>'form-control','empty'=>__('Selecciona una opción'),'label'=>false]); ?>
       </div>
       <div class="form-group">
-         <label><?= __('Cambio de contraseña')?></label>
+         <label><?= __('Forzar cambio de contraseña')?></label>
          <?php echo $this->Form->control('is_reset_password', ['class'=>'','label'=>false]); ?>
       </div>
       <div class="form-group">

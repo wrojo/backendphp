@@ -38,6 +38,7 @@ class AppController extends Controller
      *
      * @return void
      */
+    public $login = null;
     public function initialize()
     {
         parent::initialize();
@@ -80,12 +81,22 @@ class AppController extends Controller
         $controllerName = strtolower($this->request->getParam('controller'));
         $actionName = strtolower($this->request->getParam('action'));
         $user_login = $this->Auth->User();
+        if($user_login){
+            $this->login = $user_login;
+            if($this->login['is_reset_password']){
+                if($controllerName!='users' || $actionName!='cambiarclave'){
+                    return $this->redirect(['prefix' => false,'controller'=>'users','action' => 'cambiarClave']);
+                }      
+            }
+        }
         $this->set(compact('controllerName','actionName','user_login'));
     }
     
     public function isAuthorized($user = null)
     {
-       
+        if($this->request->getParam('action') === 'cambiarClave') {
+            return true;
+        }
         return false;
     }
 }

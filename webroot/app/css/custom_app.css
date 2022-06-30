@@ -163,7 +163,23 @@ a:HOVER{
     color: #2f2f2f;
     border: 1px solid #2f2f2f;
 }
-
 hr {
     border-top: 1px solid rgba(160,160,160,0.1);
-  }
+}
+#video_background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 1; 
+}
+#cover{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2; 
+}

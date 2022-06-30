@@ -123,8 +123,8 @@ class UsersController extends AppController
             $data = $this->request->getData();
             $ip = $this->request->clientIp();
             $date = new \DateTime('NOW');
-            $data['created_id'] = 1;
-            $data['modified_id'] = 1;
+            $data['created_id'] = $this->login['id'];
+            $data['modified_id'] = $this->login['id'];
             $data['modified_ip'] = $ip;
             $data['created_ip'] = $ip;
             $data['created_date'] = $date->format(Configure::read('DATABASE_DATE_FORMAT'));
@@ -166,7 +166,7 @@ class UsersController extends AppController
             $data = $this->request->getData();
             $ip = $this->request->clientIp();
             $date = new \DateTime('NOW');
-            $data['modified_id'] = 1;
+            $data['modified_id'] = $this->login['id'];
             $data['modified_ip'] = $ip;
             $data['modified_date'] = $date->format(Configure::read('DATABASE_DATE_FORMAT'));
 

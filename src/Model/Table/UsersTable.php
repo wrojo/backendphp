@@ -65,6 +65,9 @@ class UsersTable extends Table
             ->allowEmptyString('id', null, 'create',$messageVacio);
 
         $validator
+            ->notEmptyString('role_id',$messageVacio);
+
+        $validator
             ->scalar('names',$messageVacio)
             ->maxLength('names', 255,__($messageMaxRango,255))
             ->requirePresence('names',$messageVacio)

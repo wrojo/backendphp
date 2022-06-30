@@ -27,13 +27,6 @@
           <div id="loading-center">
           </div>
     </div>
-    <!-- The video -->
-    <div id="cover">
-    </div>
-    <?= $this->Html->media(
-     ['/app/videos/eClass_HechoParaAprender_WEB.mp4', ['src' => '/app/videos/eClass_HechoParaAprender_WEB.webm', 'type' => "video/mp4; codecs='theora, vorbis'"]],
-     ['autoplay','muted','loop','preload','id'=>'video_background'])?>
-    <!-- loader END -->
     <!-- Wrapper Start -->
     <div class="wrapper">
      <?= $this->fetch('content') ?> 
