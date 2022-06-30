@@ -57,7 +57,7 @@
                   <td><?= h($user->names) ?></td>
                   <td><?= h($user->surnames) ?></td>
                   <td><?= h($user->email) ?></td>
-                  <td><?= h($user->role->name) ?></td>
+                  <td><span class="badge badge-info"><?= h($user->role->name) ?></span></td>
                   <td>  
                      <a href="<?= $this->Url->build(['controller'=>'users','action'=>'view',$user->id]); ?>"  alt="<?= __('Ver usuario')?>"><i class="fas fa-eye"></i></a>
                   </td>
