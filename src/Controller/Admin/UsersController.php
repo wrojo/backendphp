@@ -205,6 +205,10 @@ class UsersController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
+        if($user->id==1){
+            $this->Flash->error(__('El usuario inicial no puede ser eliminado.'));
+            return $this->redirect(['action' => 'index']);
+        }
         if ($this->Users->delete($user)) {
             $this->Flash->success(__('Usuario eliminado correctamente.'));
         } else {
