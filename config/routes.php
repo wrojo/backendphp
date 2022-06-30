@@ -21,7 +21,6 @@ use Cake\Http\Middleware\CsrfProtectionMiddleware;
 use Cake\Routing\RouteBuilder;
 use Cake\Routing\Router;
 use Cake\Routing\Route\DashedRoute;
-use Cake\Routing\Route\InflectedRoute;
 
 /*
  * The default class to use for all routes
@@ -78,10 +77,8 @@ Router::scope('/', function (RouteBuilder $routes) {
         // Because you are in the admin scope,
         // you do not need to include the /admin prefix
         // or the admin route element.
-        
         $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);
-        //$routes->fallbacks(DashedRoute::class);
-        $routes->fallbacks(InflectedRoute::class);
+        $routes->fallbacks(DashedRoute::class);
     });
 
     /*
@@ -92,8 +89,7 @@ Router::scope('/', function (RouteBuilder $routes) {
         // you do not need to include the /admin prefix
         // or the admin route element.
         $routes->connect('/', ['controller' => 'Users', 'action' => 'index']);
-       // $routes->fallbacks(DashedRoute::class);
-        $routes->fallbacks(InflectedRoute::class);
+        $routes->fallbacks(DashedRoute::class);
     });
 
     /*
