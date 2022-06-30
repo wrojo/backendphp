@@ -44,7 +44,7 @@ class UsersController extends AppController
                 }
             }
             else{
-                $this->Flash->error(__('El email o contraseña son incorrectas.'));
+                $this->Flash->error(__('Error al autenticar el usuario en el sistema. Credenciales incorrectas o el usuario no se encuentra activo.'));
             }
         } 
     }
